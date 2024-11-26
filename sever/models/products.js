@@ -20,6 +20,10 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0
 },
+oldPrice: {
+    type: Number,
+    default: 0
+},
     category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
@@ -33,10 +37,10 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0,
 },
-    numReviews: {
-    type: Number,
-    default: 0,
-},
+//     numReviews: {
+//     type: Number,
+//     default: 0,
+// },
     isFeatured: {
     type: Boolean,
     default: false,
@@ -47,4 +51,10 @@ const productSchema = mongoose.Schema({
 },
 
 })
+productSchema.virtual('id').get(function(){
+    return this._id.toHexString();
+});
+productSchema.set('toJSON',{
+    virtuals:true,
+});
 exports.Product = mongoose.model('Product', productSchema);

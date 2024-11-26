@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 //routes
 const categoryRoutes=require('./routes/categories');
 const productRoutes=require('./routes/products');
+app.use("/uploads",express.static("uploads"));
 app.use(`/api/category`,categoryRoutes);
 app.use(`/api/products`,productRoutes);
 //Database
